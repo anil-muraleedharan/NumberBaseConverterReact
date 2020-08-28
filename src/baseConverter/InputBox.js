@@ -1,8 +1,11 @@
 import React from 'react';
 
-const InputBox = ({ value, base, onChange }) => {
+const InputBox = ({ value, base, validator, onChange }) => {
   const handleChange = (event) => {
-    onChange(event.target.value, base);
+    const { value } = event.target;
+    if (validator.test(value)) {
+      onChange(parseInt(value, base));
+    }
   };
   return (
     <div className='input-box'>
